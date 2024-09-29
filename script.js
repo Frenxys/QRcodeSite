@@ -62,3 +62,4 @@ function createBubble() {
 
 // Crea bolle in continuazione
 setInterval(createBubble, 500);
+

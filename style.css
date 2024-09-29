@@ -89,8 +89,6 @@ button:hover {
     transition: transform 0.5s ease, opacity 0.5s ease; /* Transizione per esplosione */
 }
 
-
-
 /* Animazione delle bolle */
 @keyframes shake {
     0% { transform: translate(0); }
