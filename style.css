@@ -3,11 +3,19 @@ body {
     overflow: hidden;
     background: linear-gradient(135deg, rgba(255, 105, 180, 0.7), rgba(70, 130, 180, 0.7));
     display: flex;
+    flex-direction: column; /* Modificato per allineare gli elementi verticalmente */
     justify-content: center;
     align-items: center;
     height: 100vh;
     position: relative;
+    font-family: 'Roboto', sans-serif; /* Applicato il font */
 }
+
+.header {
+    margin-bottom: 20px; /* Spazio tra l'intestazione e il contenitore */
+    text-align: center; /* Allineamento centrato per il titolo */
+}
+
 .bubble {
     position: absolute;
     border-radius: 50%;
@@ -15,6 +23,7 @@ body {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     pointer-events: none;
 }
+
 .container {
     position: relative;
     background: rgba(255, 255, 255, 0.8);
@@ -24,9 +33,11 @@ body {
     width: 300px;
     text-align: center;
 }
+
 .qr-code-container {
     margin-top: 20px;
 }
+
 input[type="text"] {
     width: 100%;
     padding: 10px;
@@ -34,6 +45,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 button {
     padding: 10px;
     border: none;
@@ -43,6 +55,13 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 button:hover {
     background-color: #ff1493;
+}
+
+/* Stile per il titolo */
+.title {
+    color: gold; /* Colore dorato */
+    font-size: 24px; /* Dimensione del font */
 }
