@@ -1,20 +1,24 @@
 document.getElementById('generate-btn').addEventListener('click', function() {
     const urlInput = document.getElementById('url-input').value;
-    const qrCodeCanvas = document.getElementById('qr-code');
+    const qrCodeContainer = document.getElementById('qr-code-container');
+
+    // Resetta il contenuto del div ogni volta che si genera un nuovo QR code
+    qrCodeContainer.innerHTML = '';
+
     if (urlInput) {
-        // Genera il QR code usando la libreria qrcode.js
-        QRCode.toCanvas(qrCodeCanvas, urlInput, function (error) {
+        // Genera il QR code e lo inserisce nel div
+        QRCode.toCanvas(document.createElement('canvas'), urlInput, function (error, canvas) {
             if (error) console.error(error);
-            console.log('QR code generato!');
+            qrCodeContainer.appendChild(canvas);  // Aggiunge il canvas con il QR code al div
         });
-        document.getElementById('reset-btn').style.display = 'inline-block'; // Mostra il pulsante "Crea nuovo QRCode"
+
+        // Mostra il pulsante "Crea nuovo QRCode"
+        document.getElementById('reset-btn').style.display = 'inline-block';
     }
 });
 
 document.getElementById('reset-btn').addEventListener('click', function() {
     document.getElementById('url-input').value = ''; // Resetta il campo input
-    const qrCodeCanvas = document.getElementById('qr-code');
-    const context = qrCodeCanvas.getContext('2d');
-    context.clearRect(0, 0, qrCodeCanvas.width, qrCodeCanvas.height); // Pulisce il QR code precedente
+    document.getElementById('qr-code-container').innerHTML = ''; // Pulisce il QR code precedente
     document.getElementById('reset-btn').style.display = 'none'; // Nasconde il pulsante "Crea nuovo QRCode"
 });
