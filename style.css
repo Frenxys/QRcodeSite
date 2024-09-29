@@ -1,7 +1,7 @@
 body {
     margin: 0;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(255, 105, 180, 0.8), rgba(70, 130, 180, 0.8));
+    background: linear-gradient(135deg, rgba(144, 238, 144, 0.8), rgba(30, 144, 255, 0.8)); /* Verde chiaro e blu */
     display: flex;
     flex-direction: column; /* Allinea gli elementi verticalmente */
     justify-content: center;
@@ -14,6 +14,8 @@ body {
 .header {
     margin-bottom: 30px; /* Maggiore spazio tra l'intestazione e il contenitore */
     text-align: center; /* Centro l'intestazione */
+    position: relative; /* Assicurati che non venga influenzato dalle bolle */
+    z-index: 1; /* Assicurati che l'intestazione stia sopra le bolle */
 }
 
 .container {
@@ -21,14 +23,14 @@ body {
     background: white; /* Colore di sfondo non trasparente */
     padding: 30px; /* Aumentato il padding */
     border-radius: 20px; /* Maggiore rotondità */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Ombra più profonda */
+    box-shadow: none; /* Rimosso l'ombra */
     width: 90%; /* Larghezza percentuale per la responsività */
     max-width: 400px; /* Massima larghezza per desktop */
     text-align: center; /* Centro il testo nella container */
     display: flex; /* Usa flexbox per il layout */
     flex-direction: column; /* Allinea gli elementi verticalmente */
     align-items: center; /* Centro gli elementi orizzontalmente */
-    position: relative; /* Posizione relativa per il contenuto */
+    z-index: 1; /* Assicurati che il contenitore stia sopra le bolle */
 }
 
 .qr-code-container {
@@ -44,45 +46,58 @@ input[type="text"] {
     border: 1px solid #ccc; /* Colore del bordo */
     border-radius: 10px; /* Bordo arrotondato */
     text-align: center; /* Centro il testo nell'input */
-    transition: border-color 0.2s ease; /* Transizione fluida per il bordo */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Transizione fluida per il bordo */
 }
 
 input[type="text"]:focus {
-    border-color: #ff69b4; /* Colore del bordo al focus */
+    border-color: #30B64A; /* Verde scuro al focus */
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.8); /* Ombra al focus */
 }
 
 button {
     padding: 12px; /* Maggiore padding per il pulsante */
     border: none; /* Nessun bordo */
     border-radius: 10px; /* Bordo arrotondato */
-    background-color: #ff69b4; /* Colore di sfondo del pulsante */
+    background-color: #30B64A; /* Verde scuro */
     color: white; /* Colore del testo */
     cursor: pointer; /* Indica che è cliccabile */
     transition: background-color 0.2s ease, transform 0.2s ease; /* Transizione fluida */
 }
 
 button:hover {
-    background-color: #ff1493; /* Colore di sfondo al passaggio del mouse */
+    background-color: #228B22; /* Verde più scuro al passaggio del mouse */
     transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
 }
 
 /* Stile per il titolo */
 .title {
-    color: gold; /* Colore dorato */
+    color: #1E90FF; /* Blu brillante */
     font-size: 40px; /* Dimensione del font aumentata */
     text-transform: uppercase; /* Testo maiuscolo */
     font-family: 'Bubbly', cursive; /* Font Bubbly */
-    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5), 
-                 5px 5px 0 rgba(255, 215, 0, 0.7); /* Ombra per il titolo */
     font-weight: bold; /* Testo in grassetto */
 }
 
-/* Stile per le bolle */
 .bubble {
     position: absolute;
     border-radius: 50%;
-    background: rgba(60, 179, 113, 0.6); /* Colore verde */
+    background: rgba(30, 144, 255, 0.6); /* Colore blu */
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    pointer-events: none; /* Rimuove l'interazione con le bolle */
+    pointer-events: auto; /* Rimuove l'interazione con le bolle */
+    z-index: -1; /* Assicurati che le bolle siano dietro */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Transizione per esplosione */
 }
 
+
+/* Animazione delle bolle */
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-2px, 0); }
+    50% { transform: translate(2px, 0); }
+    75% { transform: translate(-2px, 0); }
+    100% { transform: translate(0); }
+}
+
+button.shake {
+    animation: shake 0.5s ease; /* Effetto di scossa */
+}
