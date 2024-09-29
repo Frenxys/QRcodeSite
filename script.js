@@ -27,8 +27,15 @@ function createBubble() {
     bubble.style.top = `${window.innerHeight}px`; // Inizia dal fondo
     bubble.style.left = `${Math.random() * window.innerWidth}px`;
     
-    // Colore verde
-    bubble.style.background = 'rgba(60, 179, 113, 0.6)'; // Verde
+    // Scegli un colore verde casuale
+    const greens = [
+        'rgba(60, 179, 113, 0.6)',  // Verde medio
+        'rgba(34, 139, 34, 0.6)',   // Verde scuro
+        'rgba(124, 252, 0, 0.6)',   // Verde chiaro
+        'rgba(0, 128, 0, 0.6)',     // Verde normale
+        'rgba(0, 255, 127, 0.6)'    // Verde primavera
+    ];
+    bubble.style.background = greens[Math.floor(Math.random() * greens.length)];
 
     document.body.appendChild(bubble);
 
@@ -44,6 +51,7 @@ function createBubble() {
         }
     }, 30);
 }
+
 
 
 // Crea bolle in continuazione
