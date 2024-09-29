@@ -13,11 +13,16 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     this.classList.add('shake');
     setTimeout(() => this.classList.remove('shake'), 500); // Rimuovi la classe dopo 500 ms
 
+    // Ottieni il colore scelto dal color picker
+    const color = document.getElementById('color-picker').value;
+
     // Genera il QR Code
     $('#qr-code-container').qrcode({
         text: url,
         width: 128,
-        height: 128
+        height: 128,
+        fill: color, // Imposta il colore di riempimento del QR code
+        background: "#ffffff" // Colore di sfondo del QR code (bianco)
     });
 
     // Effetto di dissolvenza per il QR Code

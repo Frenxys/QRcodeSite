@@ -26,6 +26,15 @@ body {
     align-items: center; /* Centro gli elementi orizzontalmente */
 }
 
+.color-picker {
+    position: absolute; /* Posizione assoluta per sovrapporre agli altri elementi */
+    top: 10px; /* Distanza dall'alto */
+    right: 10px; /* Distanza dal lato destro */
+    z-index: 10; /* Assicurati che sia sopra gli altri elementi */
+    cursor: pointer; /* Indica che è cliccabile */
+}
+
+/* Stile per il QR code e altri elementi rimangono invariati */
 .qr-code-container {
     margin-top: 20px; /* Margine tra QR code e input */
     width: 128px; /* Larghezza fissa per il QR code */
