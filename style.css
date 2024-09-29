@@ -1,67 +1,88 @@
 body {
     margin: 0;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(255, 105, 180, 0.7), rgba(70, 130, 180, 0.7));
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.8), rgba(70, 130, 180, 0.8));
     display: flex;
-    flex-direction: column; /* Modificato per allineare gli elementi verticalmente */
+    flex-direction: column; /* Allinea gli elementi verticalmente */
     justify-content: center;
     align-items: center;
     height: 100vh;
     position: relative;
-    font-family: 'Roboto', sans-serif; /* Applicato il font */
+    font-family: 'Roboto', sans-serif; /* Font di base */
 }
 
 .header {
-    margin-bottom: 20px; /* Spazio tra l'intestazione e il contenitore */
-    text-align: center; /* Allineamento centrato per il titolo */
-}
-
-.bubble {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    pointer-events: none;
+    margin-bottom: 30px; /* Maggiore spazio tra l'intestazione e il contenitore */
+    text-align: center; /* Centro l'intestazione */
 }
 
 .container {
     position: relative;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    width: 300px;
-    text-align: center;
+    background: white; /* Colore di sfondo non trasparente */
+    padding: 30px; /* Aumentato il padding */
+    border-radius: 20px; /* Maggiore rotondità */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Ombra più profonda */
+    width: 90%; /* Larghezza percentuale per la responsività */
+    max-width: 400px; /* Massima larghezza per desktop */
+    text-align: center; /* Centro il testo nella container */
+    display: flex; /* Usa flexbox per il layout */
+    flex-direction: column; /* Allinea gli elementi verticalmente */
+    align-items: center; /* Centro gli elementi orizzontalmente */
+    position: relative; /* Posizione relativa per il contenuto */
 }
 
 .qr-code-container {
-    margin-top: 20px;
+    margin-top: 20px; /* Margine tra QR code e input */
+    width: 128px; /* Larghezza fissa per il QR code */
+    height: 128px; /* Altezza fissa per il QR code */
 }
 
 input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 90%; /* Larghezza del campo di input */
+    padding: 12px; /* Maggiore padding per il campo */
+    margin: 15px 0; /* Margine verticale */
+    border: 1px solid #ccc; /* Colore del bordo */
+    border-radius: 10px; /* Bordo arrotondato */
+    text-align: center; /* Centro il testo nell'input */
+    transition: border-color 0.2s ease; /* Transizione fluida per il bordo */
+}
+
+input[type="text"]:focus {
+    border-color: #ff69b4; /* Colore del bordo al focus */
 }
 
 button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ff69b4;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 12px; /* Maggiore padding per il pulsante */
+    border: none; /* Nessun bordo */
+    border-radius: 10px; /* Bordo arrotondato */
+    background-color: #ff69b4; /* Colore di sfondo del pulsante */
+    color: white; /* Colore del testo */
+    cursor: pointer; /* Indica che è cliccabile */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Transizione fluida */
 }
 
 button:hover {
-    background-color: #ff1493;
+    background-color: #ff1493; /* Colore di sfondo al passaggio del mouse */
+    transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
 }
 
 /* Stile per il titolo */
 .title {
     color: gold; /* Colore dorato */
-    font-size: 24px; /* Dimensione del font */
+    font-size: 40px; /* Dimensione del font aumentata */
+    text-transform: uppercase; /* Testo maiuscolo */
+    font-family: 'Bubbly', cursive; /* Font Bubbly */
+    text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5), 
+                 5px 5px 0 rgba(255, 215, 0, 0.7); /* Ombra per il titolo */
+    font-weight: bold; /* Testo in grassetto */
 }
+
+/* Stile per le bolle */
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(60, 179, 113, 0.6); /* Colore verde */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    pointer-events: none; /* Rimuove l'interazione con le bolle */
+}
+

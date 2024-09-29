@@ -26,6 +26,10 @@ function createBubble() {
     bubble.style.height = `${size}px`;
     bubble.style.top = `${window.innerHeight}px`; // Inizia dal fondo
     bubble.style.left = `${Math.random() * window.innerWidth}px`;
+    
+    // Colore verde
+    bubble.style.background = 'rgba(60, 179, 113, 0.6)'; // Verde
+
     document.body.appendChild(bubble);
 
     // Animazione delle bolle
@@ -40,6 +44,7 @@ function createBubble() {
         }
     }, 30);
 }
+
 
 // Crea bolle in continuazione
 setInterval(createBubble, 500);
