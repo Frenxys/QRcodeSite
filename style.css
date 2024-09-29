@@ -28,13 +28,17 @@ h1 {
 }
 
 #qr-code-container {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 canvas {
     border: 2px solid #FF6B6B;
     padding: 10px;
     border-radius: 10px;
+}
+
+.download-container {
+    margin-bottom: 10px; /* Spazio tra QR code e input */
 }
 
 .input-container {
@@ -65,4 +69,8 @@ button {
 
 button:hover {
     background-color: #FFB6B9;
+}
+
+#download-btn {
+    margin-top: 10px; /* Spazio sopra il pulsante di download */
 }
