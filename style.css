@@ -30,6 +30,7 @@ h1 {
 .input-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
 }
 
@@ -75,26 +76,34 @@ canvas {
     background-color: #BEE3F8;
 }
 
-/* Stile per il color picker */
+/* Stile per il color picker box */
 .color-picker-box {
-    margin-top: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF6B6B;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .color-picker-box label {
+    margin-right: 10px;
     font-weight: 600;
-    margin-bottom: 10px;
-    display: block;
 }
 
+/* Stile per il cerchio con contrasto bianco */
 .circle {
-    display: inline-block;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: #FFFFFF;
     padding: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 input[type="color"] {
