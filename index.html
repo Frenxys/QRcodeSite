@@ -4,33 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generatore di QR Code</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>Genera il tuo QR Code</h1>
-
-        <div class="qr-container">
-            <div id="qr-code-container">
-                <!-- Il QR Code verrà generato qui -->
-            </div>
-            <div class="button-container">
-                <button id="download-btn" style="display:none;">Scarica QR Code</button>
-            </div>
-        </div>
+        <div class="qr-code-container" id="qr-code-container"></div>
+        <input type="text" id="url-input" placeholder="Inserisci il link">
+        <button id="generate-btn">Genera QR Code</button>
     </div>
 
-    <!-- Finestra draggabile -->
-    <div class="draggable-window" id="draggable-window">
-        <div class="input-container">
-            <input type="text" id="url-input" placeholder="Inserisci il link" />
-            <button id="generate-btn">Genera QR Code</button>
-        </div>
-    </div>
-
-    <!-- Includi la libreria per generare il QR Code -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

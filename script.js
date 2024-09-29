@@ -1,75 +1,45 @@
-// Funzione per rendere la finestra draggabile
-const dragElement = (el) => {
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    el.onmousedown = dragMouseDown;
-
-    function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        el.style.top = (el.offsetTop - pos2) + "px";
-        el.style.left = (el.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
-};
-
-// Attiva il drag sulla finestra
-const draggableWindow = document.getElementById('draggable-window');
-dragElement(draggableWindow);
-
-// Funzione per generare QR Code
+// Funzionalità per generare QR Code
 document.getElementById('generate-btn').addEventListener('click', function() {
-    const urlInput = document.getElementById('url-input');
-    const url = urlInput.value;
+    const url = document.getElementById('url-input').value;
+    const qrCodeContainer = document.getElementById('qr-code-container');
+    qrCodeContainer.innerHTML = '';
 
     if (url.trim() === "") {
         alert("Per favore, inserisci un link valido.");
         return;
     }
 
-    // Cancella il QR code precedente se presente
-    const qrCodeContainer = document.getElementById('qr-code-container');
-    qrCodeContainer.innerHTML = '';
-
-    // Genera il nuovo QR Code
-    const canvas = document.createElement('canvas');
-    QRCode.toCanvas(canvas, url, function(error) {
-        if (error) {
-            console.error(error);
-            alert("Errore nella generazione del QR Code.");
-        } else {
-            // Mostra il pulsante di download solo dopo la generazione del QR code
-            document.getElementById('download-btn').style.display = 'inline-block';
-        }
+    // Genera il QR Code
+    $('#qr-code-container').qrcode({
+        text: url,
+        width: 128,
+        height: 128
     });
-
-    qrCodeContainer.appendChild(canvas);
-
-    // Svuota il campo di input
-    urlInput.value = "";
 });
 
-// Aggiungi funzionalità di download
-document.getElementById('download-btn').addEventListener('click', function() {
-    const canvas = document.querySelector('#qr-code-container canvas');
-    if (canvas) {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'qr_code.png';
-        link.click();
-    } else {
-        alert(
+// Funzione per generare bolle
+function createBubble() {
+    const bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    const size = Math.random() * 50 + 20; // dimensione variabile
+    bubble.style.width = `${size}px`;
+    bubble.style.height = `${size}px`;
+    bubble.style.top = `${window.innerHeight}px`; // Inizia dal fondo
+    bubble.style.left = `${Math.random() * window.innerWidth}px`;
+    document.body.appendChild(bubble);
+
+    // Animazione delle bolle
+    let bubbleAnimation = setInterval(() => {
+        const bubbleRect = bubble.getBoundingClientRect();
+        bubble.style.top = `${bubbleRect.top - 1}px`; // Sali di 1 pixel
+
+        // Rimuovi la bolla se esce dallo schermo
+        if (bubbleRect.top + size < 0) {
+            clearInterval(bubbleAnimation);
+            document.body.removeChild(bubble);
+        }
+    }, 30);
+}
+
+// Crea bolle in continuazione
+setInterval(createBubble, 500);

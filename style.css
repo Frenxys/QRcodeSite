@@ -1,103 +1,48 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to right, #FF6B6B, #FFB6B9, #A2D5F2);
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.7), rgba(70, 130, 180, 0.7));
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; /* Permette il posizionamento assoluto della finestra draggabile */
+    position: relative;
 }
-
-.container {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #333;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.qr-container {
-    display: flex;
-    flex-direction: column; /* Disposizione verticale */
-    align-items: center; /* Centra gli elementi */
-    margin-bottom: 10px; /* Spazio tra QR code e input */
-}
-
-#qr-code-container {
-    margin-bottom: 10px; /* Spazio tra QR code e pulsanti */
-}
-
-canvas {
-    border: 2px solid #FF6B6B;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.input-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px; /* Spazio tra input e pulsante */
-}
-
-input[type="text"] {
-    width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #FF6B6B;
-    border-radius: 10px;
-    outline: none;
-}
-
-button {
-    background-color: #FF6B6B;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
-    margin-left: 10px; /* Spazio tra input e pulsante */
-}
-
-button:hover {
-    background-color: #FFB6B9;
-}
-
-/* Stili per la finestra draggabile */
-.draggable-window {
+.bubble {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 350px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 20px; /* Rende la finestra a forma di bolla */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Padding interno per la bolla */
-    z-index: 10; /* Assicura che la finestra sia sopra gli altri elementi */
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    pointer-events: none;
 }
-
-.draggable-window::after {
-    content: '';
-    display: block;
-    clear: both;
+.container {
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
 }
-
-/* Header per la finestra draggabile */
-.input-container {
-    display: flex;
-    flex-direction: column; /* Dispone l'input e il pulsante uno sopra l'altro */
-    align-items: center; /* Centra gli elementi */
+.qr-code-container {
+    margin-top: 20px;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff69b4;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #ff1493;
 }
