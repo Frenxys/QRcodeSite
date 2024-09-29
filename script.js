@@ -1,6 +1,41 @@
+// Funzione per rendere la finestra draggabile
+const dragElement = (el) => {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    el.onmousedown = dragMouseDown;
+
+    function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        el.style.top = (el.offsetTop - pos2) + "px";
+        el.style.left = (el.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+};
+
+// Attiva il drag sulla finestra
+const draggableWindow = document.getElementById('draggable-window');
+dragElement(draggableWindow);
+
+// Funzione per generare QR Code
 document.getElementById('generate-btn').addEventListener('click', function() {
-    const url = document.getElementById('url-input').value;
-    
+    const urlInput = document.getElementById('url-input');
+    const url = urlInput.value;
+
     if (url.trim() === "") {
         alert("Per favore, inserisci un link valido.");
         return;
@@ -23,6 +58,9 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     });
 
     qrCodeContainer.appendChild(canvas);
+
+    // Svuota il campo di input
+    urlInput.value = "";
 });
 
 // Aggiungi funzionalità di download
@@ -34,6 +72,4 @@ document.getElementById('download-btn').addEventListener('click', function() {
         link.download = 'qr_code.png';
         link.click();
     } else {
-        alert("Nessun QR Code generato per il download.");
-    }
-});
+        alert(
