@@ -27,8 +27,15 @@ h1 {
     margin-bottom: 20px;
 }
 
+.qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* Spazio tra QR code e input */
+}
+
 #qr-code-container {
-    margin-bottom: 10px;
+    margin-right: 10px; /* Spazio tra QR code e pulsante di download */
 }
 
 canvas {
@@ -38,7 +45,8 @@ canvas {
 }
 
 .download-container {
-    margin-bottom: 10px; /* Spazio tra QR code e input */
+    display: flex;
+    align-items: center; /* Centrato verticalmente */
 }
 
 .input-container {
@@ -72,5 +80,5 @@ button:hover {
 }
 
 #download-btn {
-    margin-top: 10px; /* Spazio sopra il pulsante di download */
+    margin-top: 0; /* Rimuove margine superiore */
 }
