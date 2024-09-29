@@ -27,11 +27,20 @@ h1 {
     margin-bottom: 20px;
 }
 
+#qr-code-container {
+    margin-bottom: 20px;
+}
+
+canvas {
+    border: 2px solid #FF6B6B;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .input-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 input[type="text"] {
@@ -56,64 +65,4 @@ button {
 
 button:hover {
     background-color: #FFB6B9;
-}
-
-#qr-code-container {
-    margin: 20px 0;
-}
-
-canvas {
-    border: 2px solid #FF6B6B;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-#reset-btn {
-    background-color: #A2D5F2;
-}
-
-#reset-btn:hover {
-    background-color: #BEE3F8;
-}
-
-/* Stile per il color picker box */
-.color-picker-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #FF6B6B;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.color-picker-box label {
-    margin-right: 10px;
-    font-weight: 600;
-}
-
-/* Stile per il cerchio con contrasto bianco */
-.circle {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #FFFFFF;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-input[type="color"] {
-    width: 100%;
-    height: 100%;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    border-radius: 50%;
-    background: none;
-    outline: none;
 }

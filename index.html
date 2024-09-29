@@ -10,23 +10,18 @@
 <body>
     <div class="container">
         <h1>Genera il tuo QR Code</h1>
+
+        <div id="qr-code-container">
+            <!-- Il QR Code verrà generato qui -->
+        </div>
+
         <div class="input-container">
             <input type="text" id="url-input" placeholder="Inserisci il link">
             <button id="generate-btn">Genera QR Code</button>
-
-            <!-- Color picker circolare con bordi bianchi e neri -->
-            <div class="circle">
-                <input type="color" id="color-picker" value="#000000">
-            </div>
         </div>
-
-        <div id="qr-code-container">
-            <!-- Questo div conterrà il QR code generato -->
-        </div>
-        <button id="reset-btn" style="display:none;">Crea nuovo QRCode</button>
     </div>
 
-    <!-- Includi il file della libreria QR Code -->
+    <!-- Includi la libreria per generare il QR Code -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
     <script src="script.js"></script>
 </body>
