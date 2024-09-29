@@ -1,3 +1,4 @@
+/* Stile globale */
 body {
     margin: 0;
     overflow: hidden;
@@ -9,13 +10,6 @@ body {
     height: 100vh;
     position: relative;
     font-family: 'Roboto', sans-serif; /* Font di base */
-}
-
-.header {
-    margin-bottom: 30px; /* Maggiore spazio tra l'intestazione e il contenitore */
-    text-align: center; /* Centro l'intestazione */
-    position: relative; /* Assicurati che non venga influenzato dalle bolle */
-    z-index: 1; /* Assicurati che l'intestazione stia sopra le bolle */
 }
 
 .container {
@@ -30,7 +24,6 @@ body {
     display: flex; /* Usa flexbox per il layout */
     flex-direction: column; /* Allinea gli elementi verticalmente */
     align-items: center; /* Centro gli elementi orizzontalmente */
-    z-index: 1; /* Assicurati che il contenitore stia sopra le bolle */
 }
 
 .qr-code-container {
@@ -69,23 +62,14 @@ button:hover {
     transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
 }
 
-/* Stile per il titolo */
-.title {
-    color: #1E90FF; /* Blu brillante */
-    font-size: 40px; /* Dimensione del font aumentata */
-    text-transform: uppercase; /* Testo maiuscolo */
-    font-family: 'Bubbly', cursive; /* Font Bubbly */
-    font-weight: bold; /* Testo in grassetto */
-}
-
 /* Stile per le bolle */
 .bubble {
     position: absolute;
     border-radius: 50%;
-    background: rgba(30, 144, 255, 0.6); /* Colore blu */
+    background: rgba(255, 255, 255, 0.5); /* Colore bianco trasparente */
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     pointer-events: auto; /* Permette l'interazione con le bolle */
-    z-index: -1; /* Assicurati che le bolle siano dietro */
+    z-index: 0; /* Assicurati che le bolle siano dietro al contenitore, ma sopra il body */
     transition: transform 0.5s ease, opacity 0.5s ease; /* Transizione per esplosione */
 }
 

@@ -28,12 +28,17 @@ document.getElementById('generate-btn').addEventListener('click', function() {
 function createBubble() {
     const bubble = document.createElement('div');
     bubble.classList.add('bubble');
-    const size = Math.random() * 30 + 20; // dimensione variabile
+    const size = Math.random() * 50 + 20; // dimensione variabile
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.top = `${window.innerHeight}px`; // Inizia dal fondo
     bubble.style.left = `${Math.random() * window.innerWidth}px`;
     document.body.appendChild(bubble);
+
+    // Aggiungi evento click per esplodere la bolla
+    bubble.addEventListener('click', function() {
+        explodeBubble(bubble);
+    });
 
     // Animazione delle bolle
     let bubbleAnimation = setInterval(() => {
@@ -42,24 +47,16 @@ function createBubble() {
 
         // Rimuovi la bolla se esce dallo schermo
         if (bubbleRect.top + size < 0) {
-            bubble.style.top = `${window.innerHeight}px`; // Riporta in basso
+            clearInterval(bubbleAnimation);
+            document.body.removeChild(bubble);
         }
     }, 30);
+}
 
-    // Aggiungere evento di clic per esplodere la bolla
-    bubble.addEventListener('click', () => {
-        clearInterval(bubbleAnimation); // Ferma l'animazione
-        bubble.style.transition = 'transform 0.5s ease, opacity 0.5s ease'; // Aggiungi transizione
-        bubble.style.transform = 'scale(2)'; // Aumenta la dimensione per effetto esplosione
-        bubble.style.opacity = '0'; // Fai svanire la bolla
-
-        // Rimuovi la bolla dopo l'animazione
-        setTimeout(() => {
-            document.body.removeChild(bubble);
-        }, 500); // Rimuovi dopo 500ms (dopo la transizione)
-    });
+// Funzione per esplodere la bolla
+function explodeBubble(bubble) {
+    document.body.removeChild(bubble);
 }
 
 // Crea bolle in continuazione
 setInterval(createBubble, 500);
-
