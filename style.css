@@ -78,15 +78,17 @@ button:hover {
     font-weight: bold; /* Testo in grassetto */
 }
 
+/* Stile per le bolle */
 .bubble {
     position: absolute;
     border-radius: 50%;
     background: rgba(30, 144, 255, 0.6); /* Colore blu */
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    pointer-events: auto; /* Rimuove l'interazione con le bolle */
+    pointer-events: auto; /* Permette l'interazione con le bolle */
     z-index: -1; /* Assicurati che le bolle siano dietro */
     transition: transform 0.5s ease, opacity 0.5s ease; /* Transizione per esplosione */
 }
+
 
 
 /* Animazione delle bolle */
