@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generatore di QR Code</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link al file CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Bubbly&display=swap" rel="stylesheet"> <!-- Font Bubbly -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <input type="color" id="color-picker" class="color-picker" title="Scegli un colore per il QR code" value="#000000"> <!-- Imposta un colore di default -->
-        <div class="qr-code-container" id="qr-code-container"></div>
+        <input type="color" id="color-picker" class="color-picker" title="Scegli un colore per il QR code" value="#000000">
+        <canvas id="qr-code-canvas" class="qr-code-container" width="256" height="256"></canvas>
         <input type="text" id="url-input" placeholder="Inserisci il link">
         <button id="generate-btn">Genera QR Code</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-    <script src="script.js"></script> <!-- Link al file JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>

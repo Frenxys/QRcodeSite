@@ -1,8 +1,7 @@
 // Funzionalità per generare QR Code
 document.getElementById('generate-btn').addEventListener('click', function() {
     const url = document.getElementById('url-input').value;
-    const qrCodeContainer = document.getElementById('qr-code-container');
-    qrCodeContainer.innerHTML = '';
+    const qrCodeContainer = document.getElementById('qr-code-canvas');
 
     if (url.trim() === "") {
         alert("Per favore, inserisci un link valido.");
@@ -16,24 +15,30 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     // Ottieni il colore scelto dal color picker
     const color = document.getElementById('color-picker').value;
 
-    // Genera il QR Code
-    $('#qr-code-container').qrcode({
+    // Pulisci il canvas prima di generare un nuovo QR Code
+    const ctx = qrCodeContainer.getContext('2d');
+    ctx.clearRect(0, 0, qrCodeContainer.width, qrCodeContainer.height); // Pulisci il canvas
+
+    // Crea un nuovo QRCode
+    const qrCode = new QRCode(qrCodeContainer, {
         text: url,
-        width: 128,
-        height: 128,
-        fill: color, // Imposta il colore di riempimento del QR code
-        background: "#ffffff" // Colore di sfondo del QR code (bianco)
+        width: 256,
+        height: 256,
+        colorDark: color, // Colore scuro del QR code
+        colorLight: "#ffffff", // Colore di sfondo del QR code (bianco)
+        correctLevel: QRCode.CorrectLevel.H // Livello di correzione degli errori
     });
 
     // Effetto di dissolvenza per il QR Code
     $(qrCodeContainer).hide().fadeIn(500); // Dissolvenza in 500 ms
 });
 
+
 // Funzione per generare bolle
 function createBubble() {
     const bubble = document.createElement('div');
     bubble.classList.add('bubble');
-    const size = Math.random() * 50 + 20; // dimensione variabile
+    const size = Math.random() * 50 + 20; // Dimensione variabile
     bubble.style.width = `${size}px`;
     bubble.style.height = `${size}px`;
     bubble.style.top = `${window.innerHeight}px`; // Inizia dal fondo

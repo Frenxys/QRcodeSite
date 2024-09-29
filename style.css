@@ -37,8 +37,9 @@ body {
 /* Stile per il QR code e altri elementi rimangono invariati */
 .qr-code-container {
     margin-top: 20px; /* Margine tra QR code e input */
-    width: 128px; /* Larghezza fissa per il QR code */
-    height: 128px; /* Altezza fissa per il QR code */
+    width: 256px; /* Larghezza fissa per il QR code */
+    height: 256px; /* Altezza fissa per il QR code */
+    background-color: lightgrey; /* Colore di sfondo temporaneo per il canvas */
 }
 
 input[type="text"] {
