@@ -12,9 +12,17 @@
         <h1>Genera il tuo QR Code</h1>
         <div class="input-container">
             <input type="text" id="url-input" placeholder="Inserisci il link">
-            <input type="color" id="color-picker" value="#000000"> <!-- Color picker per selezionare il colore -->
             <button id="generate-btn">Genera QR Code</button>
         </div>
+
+        <!-- Box per il color picker -->
+        <div class="color-picker-box">
+            <label for="color-picker">Scegli colore:</label>
+            <div class="circle">
+                <input type="color" id="color-picker" value="#000000">
+            </div>
+        </div>
+
         <div id="qr-code-container">
             <!-- Questo div conterrà il QR code generato -->
         </div>

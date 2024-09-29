@@ -74,3 +74,37 @@ canvas {
 #reset-btn:hover {
     background-color: #BEE3F8;
 }
+
+/* Stile per il color picker */
+.color-picker-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.color-picker-box label {
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.circle {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    padding: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="color"] {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    background: none;
+    outline: none;
+}
