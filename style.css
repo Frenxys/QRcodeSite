@@ -2,7 +2,7 @@
 body {
     margin: 0;
     overflow: hidden;
-    background: linear-gradient(112.00599690501281deg, rgba(255, 236, 210,1) 4.927083333333334%,rgba(252, 184, 162,1) 97.84374999999999%);
+    background: linear-gradient(112.00599690501281deg, rgba(255, 236, 210, 1) 4.927083333333334%, rgba(252, 184, 162, 1) 97.84374999999999%);
     display: flex;
     flex-direction: column; /* Allinea gli elementi verticalmente */
     justify-content: center;
@@ -17,7 +17,7 @@ body {
     background: white; /* Colore di sfondo non trasparente */
     padding: 30px; /* Aumentato il padding */
     border-radius: 20px; /* Maggiore rotondità */
-    box-shadow: none; /* Rimosso l'ombra */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Ombra leggera per il contenitore */
     width: 90%; /* Larghezza percentuale per la responsività */
     max-width: 400px; /* Massima larghezza per desktop */
     text-align: center; /* Centro il testo nella container */
@@ -28,20 +28,18 @@ body {
 }
 
 .color-picker {
-    position: absolute; /* Mantiene il color picker in posizione assoluta */
-    top: 10px; /* Distanza dall'alto */
-    right: 10px; /* Distanza dal lato destro */
+    /* Rimuovere la posizione assoluta */
     appearance: none; /* Rimuove lo stile predefinito del browser */
-    width: 50px;
-    height: 50px;
-    border: none;
+    margin-left: 10px;
+    width: 50px; /* Larghezza del selettore */
+    height: 50px; /* Altezza del selettore */
+    border: none; /* Nessun bordo */
     border-radius: 50%; /* Rende il selettore rotondo */
-    cursor: pointer;
+    cursor: pointer; /* Cambia il cursore al passaggio del mouse */
     background: linear-gradient(135deg, #ffffff, #dcdcdc); /* Sfondo elegante */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05); /* Ombra esterna */
     transition: all 0.3s ease; /* Transizione per hover */
 }
-
 .color-picker:hover {
     transform: scale(1.1); /* Leggero ingrandimento al passaggio del mouse */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra più accentuata */
@@ -51,7 +49,6 @@ body {
     transform: scale(1.2); /* Leggero ingrandimento quando si clicca */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombra più profonda durante il click */
 }
-
 
 .color-picker::-webkit-color-swatch {
     border-radius: 50%; /* Mantiene la rotondità */
@@ -64,15 +61,12 @@ body {
     border-radius: 50%; /* Mantiene la rotondità */
 }
 
-
-/* Stile per il QR code e altri elementi rimangono invariati */
 .qr-code-container {
     margin-top: 20px;
     width: 256px;
     height: 256px;
-    background-color: lightgrey; /* Puoi lasciare questo sfondo, o rimuoverlo */
+    background-color: lightgrey; /* Sfondo del contenitore QR code */
 }
-
 
 input[type="text"] {
     width: 90%; /* Larghezza del campo di input */
@@ -124,16 +118,58 @@ button:hover {
     100% { transform: translate(0); }
 }
 
-
-div {
-    display: flex; /* Utilizza flexbox per allineare gli elementi */
-    align-items: center; /* Allinea verticalmente gli elementi al centro */
+/* Stile per la bolla di upload */
+.upload-bubble {
+    position: relative; /* Cambiato in relative per posizionamento accanto */
+    margin-right: 10px; /* Spazio a destra per distanziare dal color picker */
+    width: 50px; /* Dimensione della bolla */
+    height: 50px; /* Dimensione della bolla */
+    background-color: rgba(204, 204, 204, 0.8); /* Colore grigio trasparente per la bolla di upload */
+    border-radius: 50%; /* Forma circolare */
+    display: flex; /* Flex per centrare l'icona */
+    justify-content: center; /* Centro orizzontale */
+    align-items: center; /* Centro verticale */
+    cursor: pointer; /* Indica che è cliccabile */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombra */
+    transition: transform 0.2s; /* Transizione per effetto hover */
 }
 
+.upload-bubble:hover {
+    transform: scale(1.1); /* Ingrandimento al passaggio del mouse */
+}
+
+/* Stile per l'icona di upload */
+.upload-logo-icon {
+    width: 25px; /* Dimensione dell'icona di upload */
+    height: 25px; /* Dimensione dell'icona di upload */
+}
+
+/* Stile per l'icona di cambio stile dots */
+.change-style-bubble {
+    position: relative; /* Posizionamento relativo per allineamento */
+    width: 50px; /* Dimensione della bolla */
+    height: 50px; /* Dimensione della bolla */
+    background-color: rgba(204, 204, 204, 0.8); /* Colore grigio trasparente per la bolla di cambio stile */
+    border-radius: 50%; /* Forma circolare */
+    display: flex; /* Flex per centrare l'icona */
+    justify-content: center; /* Centro orizzontale */
+    align-items: center; /* Centro verticale */
+    cursor: pointer; /* Indica che è cliccabile */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombra */
+    transition: transform 0.2s; /* Transizione per effetto hover */
+}
+
+.change-style-bubble:hover {
+    transform: scale(1.1); /* Ingrandimento al passaggio del mouse */
+}
+
+/* Stile per l'icona di cambio stile */
 #dots-style-icon {
-    width: 24px; /* Imposta la larghezza dell'icona */
-    height: 24px; /* Imposta l'altezza dell'icona */
-    margin-left: 10px; /* Aggiungi un margine a sinistra per distanziare l'icona dal pulsante */
-    display: none; /* Nascondi l'icona di default */
+    width: 25px; /* Imposta la larghezza dell'icona */
+    height: 25px; /* Imposta l'altezza dell'icona */
 }
-
+.header-controls {
+    display: flex; /* Utilizza flexbox per allineare gli elementi orizzontalmente */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+    gap: 20px; /* Spazio tra gli elementi (puoi regolare questo valore) */
+}

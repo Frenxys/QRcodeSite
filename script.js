@@ -1,14 +1,32 @@
 let currentUrl = ""; // Variabile globale per mantenere il link attuale
 let qrCodeStyling; // Istanza di QRCodeStyling
+let logoUrl = ""; // URL del logo caricato
 const dotStyles = ["square", "rounded", "dots"]; // Array degli stili dei dots
 let currentDotStyleIndex = 0; // Indice dello stile attuale
+
+// Event listener per la bolla di caricamento logo
+document.getElementById('upload-logo-bubble').addEventListener('click', function() {
+    document.getElementById('logo-input').click(); // Clicca sul file input
+});
+
+// Event listener per il caricamento del logo
+document.getElementById('logo-input').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            logoUrl = e.target.result; // Imposta l'URL del logo caricato
+            generateQRCode(currentUrl); // Rigenera il QR code con il logo
+        };
+        reader.readAsDataURL(file); // Leggi il file come URL data
+    }
+});
 
 // Event listener per il bottone "Genera QR Code"
 document.getElementById('generate-btn').addEventListener('click', function() {
     const url = document.getElementById('url-input').value.trim();
     const downloadBtn = document.getElementById('download-btn');
     const dotsStyleIcon = document.getElementById('dots-style-icon');
-    const qrCodeContainer = document.getElementById('qr-code-container');
 
     if (url === "") {
         alert("Per favore, inserisci un link valido.");
@@ -25,7 +43,6 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     // Genera il QR code con lo stile predefinito
     generateQRCode(currentUrl);
 
-    // Mostra i pulsanti di download e l'icona di cambio stile
     downloadBtn.style.display = 'inline-block';
     dotsStyleIcon.style.display = 'inline-block'; // Mostra l'icona
 });
@@ -35,61 +52,55 @@ function generateQRCode(url) {
     const qrCodeContainer = document.getElementById('qr-code-container');
     const color = document.getElementById('color-picker').value;
 
-    // Pulisci il contenuto del div prima di generare un nuovo QR Code
-    qrCodeContainer.innerHTML = ""; // Rimuovi il vecchio QR code
-
-    // Crea una nuova istanza di QRCodeStyling con lo stile attuale
-    qrCodeStyling = new QRCodeStyling({
-        width: 256,
-        height: 256,
-        data: url,
-        dotsOptions: {
-            color: color, // Colore dei dots
-            type: dotStyles[currentDotStyleIndex] // Tipo di dots
-        },
-        backgroundOptions: {
-            color: "#ffffff" // Sfondo bianco
-        },
-        imageOptions: {
-            crossOrigin: "anonymous",
-        }
-    });
-
-    // Renderizza il QR code nel div
-    qrCodeStyling.append(qrCodeContainer);
-}
-
-// Funzione per cambiare lo stile dei dots
-document.getElementById('dots-style-icon').addEventListener('click', function() {
-    // Incrementa l'indice per cambiare stile
-    currentDotStyleIndex = (currentDotStyleIndex + 1) % dotStyles.length; // Torna all'inizio se supera la lunghezza
-
-    // Aggiorna lo stile dei dots e rigenera il QR code
-    qrCodeStyling.update({
-        dotsOptions: {
-            type: dotStyles[currentDotStyleIndex] // Nuovo stile
-        }
-    });
-});
-
-// Funzione per preparare il download del QR Code
-document.getElementById('download-btn').addEventListener('click', function() {
-    qrCodeStyling.download({
-        name: 'qrcode',
-        extension: 'png'
-    });
-});
-
-// Event listener per il color picker per cambiare il colore dinamicamente
-document.getElementById('color-picker').addEventListener('input', function() {
-    if (currentUrl !== "") {
-        // Se c'è un URL già generato, aggiorna il QR code con il nuovo colore
+    if (qrCodeStyling) {
         qrCodeStyling.update({
+            data: url,
+            image: logoUrl,
             dotsOptions: {
-                color: this.value
+                color: color,
+                type: dotStyles[currentDotStyleIndex]
             }
         });
+    } else {
+        qrCodeStyling = new QRCodeStyling({
+            width: 256,
+            height: 256,
+            data: url,
+            image: logoUrl,
+            dotsOptions: {
+                color: color,
+                type: dotStyles[currentDotStyleIndex]
+            },
+            imageOptions: {
+                crossOrigin: 'anonymous',
+                margin: 10
+            },
+            backgroundOptions: {
+                color: "#ffffff",
+            },
+            canvas: true,
+            qrOptions: {
+                errorCorrectionLevel: 'H',
+            }
+        });
+        qrCodeStyling.append(qrCodeContainer); // Aggiungi il QR code al contenitore
     }
+}
+
+// Event listener per il pulsante di download
+document.getElementById('download-btn').addEventListener('click', function() {
+    qrCodeStyling.download({ name: "qr-code", extension: "png" }); // Scarica il QR code come immagine
+});
+
+// Event listener per cambiare lo stile dei dots
+document.getElementById('dots-style-icon').addEventListener('click', function() {
+    currentDotStyleIndex = (currentDotStyleIndex + 1) % dotStyles.length; // Cambia indice
+    generateQRCode(currentUrl); // Rigenera il QR code con il nuovo stile
+});
+
+// Event listener per il selettore di colore
+document.getElementById('color-picker').addEventListener('input', function() {
+    generateQRCode(currentUrl); // Rigenera il QR code con il nuovo colore
 });
 
 
