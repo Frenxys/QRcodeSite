@@ -27,20 +27,51 @@ body {
 }
 
 .color-picker {
-    position: absolute; /* Posizione assoluta per sovrapporre agli altri elementi */
+    position: absolute; /* Mantiene il color picker in posizione assoluta */
     top: 10px; /* Distanza dall'alto */
     right: 10px; /* Distanza dal lato destro */
-    z-index: 10; /* Assicurati che sia sopra gli altri elementi */
-    cursor: pointer; /* Indica che è cliccabile */
+    appearance: none; /* Rimuove lo stile predefinito del browser */
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%; /* Rende il selettore rotondo */
+    cursor: pointer;
+    background: linear-gradient(135deg, #ffffff, #dcdcdc); /* Sfondo elegante */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(0, 0, 0, 0.05); /* Ombra esterna */
+    transition: all 0.3s ease; /* Transizione per hover */
 }
+
+.color-picker:hover {
+    transform: scale(1.1); /* Leggero ingrandimento al passaggio del mouse */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra più accentuata */
+}
+
+.color-picker:active {
+    transform: scale(1.2); /* Leggero ingrandimento quando si clicca */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombra più profonda durante il click */
+}
+
+
+.color-picker::-webkit-color-swatch {
+    border-radius: 50%; /* Mantiene la rotondità */
+    padding: 0;
+    border: none; /* Rimuove il bordo standard */
+}
+
+.color-picker::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 50%; /* Mantiene la rotondità */
+}
+
 
 /* Stile per il QR code e altri elementi rimangono invariati */
 .qr-code-container {
-    margin-top: 20px; /* Margine tra QR code e input */
-    width: 256px; /* Larghezza fissa per il QR code */
-    height: 256px; /* Altezza fissa per il QR code */
-    background-color: lightgrey; /* Colore di sfondo temporaneo per il canvas */
+    margin-top: 20px;
+    width: 256px;
+    height: 256px;
+    background-color: lightgrey; /* Puoi lasciare questo sfondo, o rimuoverlo */
 }
+
 
 input[type="text"] {
     width: 90%; /* Larghezza del campo di input */

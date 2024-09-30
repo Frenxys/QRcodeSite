@@ -1,26 +1,35 @@
-// Funzionalità per generare QR Code
+let currentUrl = ""; // Variabile globale per mantenere il link attuale
+
 document.getElementById('generate-btn').addEventListener('click', function() {
     const url = document.getElementById('url-input').value;
-    const qrCodeContainer = document.getElementById('qr-code-canvas');
+    const qrCodeContainer = document.getElementById('qr-code-container');
 
     if (url.trim() === "") {
         alert("Per favore, inserisci un link valido.");
         return;
     }
 
+    // Memorizza il link attuale
+    currentUrl = url;
+
     // Aggiungi effetto di scossa
     this.classList.add('shake');
     setTimeout(() => this.classList.remove('shake'), 500); // Rimuovi la classe dopo 500 ms
 
-    // Ottieni il colore scelto dal color picker
+    // Chiama la funzione per generare il QR code con il colore scelto
+    generateQRCode(currentUrl);
+});
+
+// Funzione per generare il QR Code
+function generateQRCode(url) {
+    const qrCodeContainer = document.getElementById('qr-code-container');
     const color = document.getElementById('color-picker').value;
 
-    // Pulisci il canvas prima di generare un nuovo QR Code
-    const ctx = qrCodeContainer.getContext('2d');
-    ctx.clearRect(0, 0, qrCodeContainer.width, qrCodeContainer.height); // Pulisci il canvas
+    // Pulisci il contenuto del div prima di generare un nuovo QR Code
+    qrCodeContainer.innerHTML = ""; // Rimuovi il vecchio QR code
 
-    // Crea un nuovo QRCode
-    const qrCode = new QRCode(qrCodeContainer, {
+    // Crea un nuovo QRCode con il colore attuale
+    new QRCode(qrCodeContainer, {
         text: url,
         width: 256,
         height: 256,
@@ -31,7 +40,16 @@ document.getElementById('generate-btn').addEventListener('click', function() {
 
     // Effetto di dissolvenza per il QR Code
     $(qrCodeContainer).hide().fadeIn(500); // Dissolvenza in 500 ms
+}
+
+// Event listener per cambiare il colore dinamicamente
+document.getElementById('color-picker').addEventListener('input', function() {
+    if (currentUrl.trim() !== "") {
+        // Se c'è un URL già generato, rigenera il QR code con il nuovo colore
+        generateQRCode(currentUrl);
+    }
 });
+
 
 
 // Funzione per generare bolle
