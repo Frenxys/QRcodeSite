@@ -8,10 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
 </head>
 <body>
     <div class="container">
-        <h1>Generatore di QR Code</h1>
+        <h1>QR Code Generator</h1>
         
         <div class="header">
             <div class="header-controls">
@@ -27,14 +28,17 @@
         </div>
         
         <div id="qr-code-container" class="qr-code-container"></div>
-        <input type="text" id="url-input" placeholder="Inserisci il link" required>
+        <input type="text" id="url-input" placeholder="Insert link" required>
         
         <div class="button-container">
-            <button id="generate-btn">Genera QR Code</button>
+            <button id="generate-btn">Generate QR Code</button>
             <button id="download-btn" style="display: none;">Download</button>
         </div>
     </div>
-
+    <div class="credits">
+        Made by Enea Zani
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

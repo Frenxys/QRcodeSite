@@ -173,3 +173,12 @@ button:hover {
     align-items: center; /* Allinea verticalmente gli elementi al centro */
     gap: 20px; /* Spazio tra gli elementi (puoi regolare questo valore) */
 }
+.credits {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-family: 'Pacifico', cursive;
+    font-size: 16px;
+    color: #555;
+}
+
