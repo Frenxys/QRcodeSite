@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 </head>
 <body>
     <div class="container">
+        <h1>Generatore di QR Code</h1>
         <input type="color" id="color-picker" class="color-picker" title="Scegli un colore per il QR code" value="#000000">
         <div id="qr-code-container" class="qr-code-container"></div>
-        <input type="text" id="url-input" placeholder="Inserisci il link">
+        <input type="text" id="url-input" placeholder="Inserisci il link" required>
         <div>
             <button id="generate-btn">Genera QR Code</button>
             <button id="download-btn" style="display: none;">Download</button>
+            <img id="dots-style-icon" src="icons/change.png" alt="Cambia Stile Dots" style="display: none; cursor: pointer;" title="Cambia Stile Dots">
         </div>
+        
     </div>
-    
 
     <script src="script.js"></script>
 </body>

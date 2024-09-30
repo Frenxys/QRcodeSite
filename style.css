@@ -125,4 +125,15 @@ button:hover {
 }
 
 
+div {
+    display: flex; /* Utilizza flexbox per allineare gli elementi */
+    align-items: center; /* Allinea verticalmente gli elementi al centro */
+}
+
+#dots-style-icon {
+    width: 24px; /* Imposta la larghezza dell'icona */
+    height: 24px; /* Imposta l'altezza dell'icona */
+    margin-left: 10px; /* Aggiungi un margine a sinistra per distanziare l'icona dal pulsante */
+    display: none; /* Nascondi l'icona di default */
+}
 

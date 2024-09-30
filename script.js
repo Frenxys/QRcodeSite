@@ -1,10 +1,14 @@
 let currentUrl = ""; // Variabile globale per mantenere il link attuale
+let qrCodeStyling; // Istanza di QRCodeStyling
+const dotStyles = ["square", "rounded", "dots"]; // Array degli stili dei dots
+let currentDotStyleIndex = 0; // Indice dello stile attuale
 
 // Event listener per il bottone "Genera QR Code"
 document.getElementById('generate-btn').addEventListener('click', function() {
     const url = document.getElementById('url-input').value.trim();
-    const qrCodeContainer = document.getElementById('qr-code-container');
     const downloadBtn = document.getElementById('download-btn');
+    const dotsStyleIcon = document.getElementById('dots-style-icon');
+    const qrCodeContainer = document.getElementById('qr-code-container');
 
     if (url === "") {
         alert("Per favore, inserisci un link valido.");
@@ -18,11 +22,12 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     this.classList.add('shake');
     setTimeout(() => this.classList.remove('shake'), 500); // Rimuovi la classe dopo 500 ms
 
-    // Genera il QR code con il colore scelto
+    // Genera il QR code con lo stile predefinito
     generateQRCode(currentUrl);
 
-    // Mostra il pulsante di download
+    // Mostra i pulsanti di download e l'icona di cambio stile
     downloadBtn.style.display = 'inline-block';
+    dotsStyleIcon.style.display = 'inline-block'; // Mostra l'icona
 });
 
 // Funzione per generare il QR Code
@@ -33,47 +38,60 @@ function generateQRCode(url) {
     // Pulisci il contenuto del div prima di generare un nuovo QR Code
     qrCodeContainer.innerHTML = ""; // Rimuovi il vecchio QR code
 
-    // Crea un nuovo QRCode con il colore selezionato
-    const qrCode = new QRCode(qrCodeContainer, {
-        text: url,
+    // Crea una nuova istanza di QRCodeStyling con lo stile attuale
+    qrCodeStyling = new QRCodeStyling({
         width: 256,
         height: 256,
-        colorDark: color, // Colore scuro del QR code
-        colorLight: "#ffffff", // Colore di sfondo del QR code (bianco)
-        correctLevel: QRCode.CorrectLevel.H // Livello di correzione degli errori
+        data: url,
+        dotsOptions: {
+            color: color, // Colore dei dots
+            type: dotStyles[currentDotStyleIndex] // Tipo di dots
+        },
+        backgroundOptions: {
+            color: "#ffffff" // Sfondo bianco
+        },
+        imageOptions: {
+            crossOrigin: "anonymous",
+        }
     });
 
-    // Rimuovi l'effetto di dissolvenza per un aggiornamento più veloce
-    // e abilita il pulsante di download dopo la generazione del QR code
-    setTimeout(() => prepareDownload(), 500); // Aspetta che il QR Code venga generato
+    // Renderizza il QR code nel div
+    qrCodeStyling.append(qrCodeContainer);
 }
 
-// Funzione per convertire il QR Code in un'immagine scaricabile
-function prepareDownload() {
-    const qrCodeContainer = document.getElementById('qr-code-container');
-    const downloadBtn = document.getElementById('download-btn');
+// Funzione per cambiare lo stile dei dots
+document.getElementById('dots-style-icon').addEventListener('click', function() {
+    // Incrementa l'indice per cambiare stile
+    currentDotStyleIndex = (currentDotStyleIndex + 1) % dotStyles.length; // Torna all'inizio se supera la lunghezza
 
-    // Trova l'elemento <img> generato dal QRCode.js
-    const qrCodeImg = qrCodeContainer.querySelector('img');
+    // Aggiorna lo stile dei dots e rigenera il QR code
+    qrCodeStyling.update({
+        dotsOptions: {
+            type: dotStyles[currentDotStyleIndex] // Nuovo stile
+        }
+    });
+});
 
-    if (qrCodeImg) {
-        // Imposta l'attributo href del pulsante di download con il contenuto dell'immagine
-        downloadBtn.onclick = function() {
-            const link = document.createElement('a');
-            link.href = qrCodeImg.src; // Immagine QR Code come sorgente
-            link.download = 'qrcode.png'; // Nome del file da scaricare
-            link.click();
-        };
-    }
-}
+// Funzione per preparare il download del QR Code
+document.getElementById('download-btn').addEventListener('click', function() {
+    qrCodeStyling.download({
+        name: 'qrcode',
+        extension: 'png'
+    });
+});
 
 // Event listener per il color picker per cambiare il colore dinamicamente
 document.getElementById('color-picker').addEventListener('input', function() {
     if (currentUrl !== "") {
-        // Se c'è un URL già generato, rigenera il QR code con il nuovo colore
-        generateQRCode(currentUrl);
+        // Se c'è un URL già generato, aggiorna il QR code con il nuovo colore
+        qrCodeStyling.update({
+            dotsOptions: {
+                color: this.value
+            }
+        });
     }
 });
+
 
 
 // Funzione per generare bolle animate
